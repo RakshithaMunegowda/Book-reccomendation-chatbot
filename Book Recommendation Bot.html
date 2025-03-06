@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation Chatbot</title>
+    <style>
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            background-color: #fef9ef;
+            color: #1d3557;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #457b9d;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            background-color: #f4d35e;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #75c9c8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #d4f1f4;
+        }
+        .recommendations {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Recommendation Chatbot</h1>
+        <label for="genre">Select a Genre:</label>
+        <select id="genre">
+            <option value="" disabled selected>Select a genre</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Non-Fiction">Non-Fiction</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Science Fiction">Science Fiction</option>
+        </select>
+        <button onclick="showRecommendations()">Get Recommendations</button>
+        <div class="recommendations" id="recommendations"></div>
+    </div>
+
+    <script>
+        const books = {
+            "Fiction": [
+                "To Kill a Mockingbird by Harper Lee",
+                "1984 by George Orwell",
+                "The Great Gatsby by F. Scott Fitzgerald"
+            ],
+            "Non-Fiction": [
+                "Sapiens: A Brief History of Humankind by Yuval Noah Harari",
+                "Educated by Tara Westover",
+                "The Immortal Life of Henrietta Lacks by Rebecca Skloot"
+            ],
+            "Fantasy": [
+                "Harry Potter and the Sorcerer's Stone by J.K. Rowling",
+                "The Hobbit by J.R.R. Tolkien",
+                "Mistborn by Brandon Sanderson"
+            ],
+            "Mystery": [
+                "Gone Girl by Gillian Flynn",
+                "The Girl with the Dragon Tattoo by Stieg Larsson",
+                "Big Little Lies by Liane Moriarty"
+            ],
+            "Science Fiction": [
+                "Dune by Frank Herbert",
+                "Ender's Game by Orson Scott Card",
+                "The Martian by Andy Weir"
+            ],
+        };
+
+        function showRecommendations() {
+            const genre = document.getElementById('genre').value;
+            const recommendationsDiv = document.getElementById('recommendations');
+
+            if (!genre) {
+                recommendationsDiv.innerHTML = '<p>Please select a genre.</p>';
+                return;
+            }
+
+            const recommendations = books[genre] || ["No recommendations available for this genre."];
+            recommendationsDiv.innerHTML = `
+                <h3>Recommendations:</h3>
+                <ul>${recommendations.map(book => `<li>${book}</li>`).join('')}</ul>
+            `;
+        }
+    </script>
+</body>
+</html>
